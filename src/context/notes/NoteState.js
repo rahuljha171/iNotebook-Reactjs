@@ -6,7 +6,7 @@ const NoteState = (props) => {
   const host = "http://localhost:5000"
 
   const notesInitialize = []
-  
+
   const [notes, setnotes] = useState(notesInitialize)
 
   const getallNotes = async () => {
@@ -19,28 +19,28 @@ const NoteState = (props) => {
         'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE5NjRiYzg4YTc5YjdlOGE2Mzg5MDVjIn0sImlhdCI6MTYzNzIzOTc1Mn0.6ZrSkA3n0Vjk4hZzM0CTzLcZKhJE3K-DB8OyB-QhJoY'
 
       },
-     // body: JSON.stringify({title,description,tag})
+      // body: JSON.stringify({title,description,tag})
     });
     const json = await response.json();
-console.log(json);
-  setnotes(json)
+    console.log(json);
+    setnotes(json)
 
-}
+  }
   //Add Note
   const addNote = async (title, description, tag) => {
 
-      //API call
-      // eslint-disable-next-line
-      const response = await fetch(`${host}/api/notes/addnote`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE5NjRiYzg4YTc5YjdlOGE2Mzg5MDVjIn0sImlhdCI6MTYzNzIzOTc1Mn0.6ZrSkA3n0Vjk4hZzM0CTzLcZKhJE3K-DB8OyB-QhJoY'
-  
-        },
-        body: JSON.stringify({title,description,tag})
-      });
-   //   const json = response.json();
+    //API call
+    // eslint-disable-next-line
+    const response = await fetch(`${host}/api/notes/addnote`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE5NjRiYzg4YTc5YjdlOGE2Mzg5MDVjIn0sImlhdCI6MTYzNzIzOTc1Mn0.6ZrSkA3n0Vjk4hZzM0CTzLcZKhJE3K-DB8OyB-QhJoY'
+
+      },
+      body: JSON.stringify({ title, description, tag })
+    });
+    //   const json = response.json();
 
     console.log("Adding a new note");
     const note = {
@@ -76,7 +76,7 @@ console.log(json);
         'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE5NjRiYzg4YTc5YjdlOGE2Mzg5MDVjIn0sImlhdCI6MTYzNzIzOTc1Mn0.6ZrSkA3n0Vjk4hZzM0CTzLcZKhJE3K-DB8OyB-QhJoY'
 
       },
-      body: JSON.stringify({title,description,tag})
+      body: JSON.stringify({ title, description, tag })
     });
     //const json= response.json();
 
@@ -93,7 +93,7 @@ console.log(json);
 
   }
   return (
-    <NoteContext.Provider value={{ notes, addNote, deleteNote, editNote,getallNotes }}>
+    <NoteContext.Provider value={{ notes, addNote, deleteNote, editNote, getallNotes }}>
       {props.children}
 
     </NoteContext.Provider>
