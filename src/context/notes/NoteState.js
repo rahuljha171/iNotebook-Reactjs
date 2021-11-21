@@ -58,7 +58,19 @@ const NoteState = (props) => {
 
 
   //Delete Note
-  const deleteNote = (id) => {
+  const deleteNote = async (id) => {
+      //API call
+    // eslint-disable-next-line
+    const response = await fetch(`${host}/api/notes/deletenote/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE5NjRiYzg4YTc5YjdlOGE2Mzg5MDVjIn0sImlhdCI6MTYzNzIzOTc1Mn0.6ZrSkA3n0Vjk4hZzM0CTzLcZKhJE3K-DB8OyB-QhJoY'
+
+      },
+    });
+    const json = await response.json();
+    console.log(json);
     const newNote = notes.filter((note) => { return note._id !== id })
 
     setnotes(newNote);
@@ -78,18 +90,22 @@ const NoteState = (props) => {
       },
       body: JSON.stringify({ title, description, tag })
     });
-    //const json= response.json();
+    const json = await response.json();
+    console.log(json);
 
-    for (let index = 0; index < notes.length; index++) {
-      const element = notes[index];
+    let newNote= JSON.parse(JSON.stringify(notes))//note after updating the notes
+    //logic to edit/update the note
+    for (let index = 0; index < newNote.length; index++) {
+      const element = newNote[index];
       if (element._id === id) {
-        element.title = title;
-        element.description = description;
-        element.tag = tag;
+        newNote[index].title = title;
+        newNote[index].description = description;
+        newNote[index].tag = tag;
+        break;
+
       }
-
-
     }
+    setnotes(newNote)
 
   }
   return (

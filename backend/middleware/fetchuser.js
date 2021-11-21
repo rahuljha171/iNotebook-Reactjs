@@ -1,5 +1,5 @@
 var jwt = require('jsonwebtoken');
-const JWT_SECRET = 'HARRRAAA%$77'; //to creat SALT
+const JWT_SECRET = 'HARRRAAA%$77'; //to creat SALT for auth
 
 const fetchuser = (req, res, next) => {
     //get the user from jwt token and add id to req object
