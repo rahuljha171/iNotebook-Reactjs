@@ -4,16 +4,14 @@ import { useLocation } from 'react-router';
 
 
 const Navbar = (props) => {
+  
   const navigate = useNavigate();
   let location = useLocation();
   const logout = (e) => {
-    e.preventDefault();
+   // e.preventDefault();
     localStorage.removeItem('token');
-    //props.showAlert("LogOut Successful","success");
-    
     navigate('/login');//direct to login page
-
-
+    props.showAlert1("logout","success");
   }
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark" >

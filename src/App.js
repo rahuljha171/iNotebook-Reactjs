@@ -30,7 +30,7 @@ function App() {
     <>
       <NoteState>
         <Router>
-          <Navbar />
+          <Navbar showAlert1={showAlert} />
           <Alerts alert={alert} />
           <div className="container">
             <Routes>
@@ -38,6 +38,7 @@ function App() {
               <Route path="about/*" element={<About  />} />
               <Route path="login/*" element={<Login showAlert={showAlert} />} />
               <Route path="signup/*" element={<SignUp  showAlert={showAlert} />} />
+              
             </Routes>
           </div>
         </Router>
